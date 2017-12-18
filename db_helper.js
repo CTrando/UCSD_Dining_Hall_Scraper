@@ -33,7 +33,7 @@ const DINING_HALLS = {
 }
 
 make_table = function(table_name){
-  connection.query('CREATE TABLE IF NOT EXISTS ' + table_name + '(type TEXT, food TEXT)');
+  connection.query('CREATE TABLE IF NOT EXISTS ' + table_name + '(ID int NOT NULL PRIMARY KEY AUTO_INCREMENT, type TEXT, food TEXT)');
 }
 
 module.exports = {
@@ -42,7 +42,6 @@ module.exports = {
   },
 
   create_tables: function() {
-    console.log(Object.values(DINING_HALLS));
     Object.values(DINING_HALLS).forEach(function(value) {
       console.log(value);
       make_table(value);
@@ -68,6 +67,7 @@ module.exports = {
   },
 
   insert: function(table_name, information) {
+    // creating the column and value strings to be inserted
     column_str = [];
     value_str = [];
 
@@ -76,6 +76,8 @@ module.exports = {
       column_str.push(key);
       value_str.push("'"+ value + "'");
     }
+
+    // joining them in a list separated by commas
     column_str = column_str.join(',');
     value_str = value_str.join(',');
     connection.query(`INSERT INTO ${table_name} (${column_str}) VALUES (${value_str})`);
@@ -87,6 +89,15 @@ module.exports = {
   
   get_dining_hall: function(key) {
     return DINING_HALLS[key];
+  },
+
+  get_menu: function(dining_hall, meal, callback) {
+    connection.query(`SELECT * FROM ${dining_hall} WHERE type='${meal}'`, 
+      function(err, results, fields) {
+        if(!err) {
+          callback(results);
+        }
+      });
   },
 
   end: function() {

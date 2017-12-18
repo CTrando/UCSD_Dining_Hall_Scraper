@@ -5,6 +5,7 @@ const db = require('./db_helper.js');
 const start_website = 'https://hdh.ucsd.edu/DiningMenus/default.aspx?i=05#';
 const root_website = 'https://hdh.ucsd.edu/DiningMenus/';
 
+
 let ret_menus = {};
 
 function storeDHMenus(store_text, link, callback) { 
@@ -13,7 +14,11 @@ function storeDHMenus(store_text, link, callback) {
 
   request(link, function (error, response, html) {
     let foodMeals = []
-    let meals = []
+    let meals = {
+      'Breakfast': false,
+      'Lunch': false,
+      'Dinner': false
+    }
 
     if (!error && response.statusCode == 200) {
       let $ = cheerio.load(html);
@@ -27,32 +32,37 @@ function storeDHMenus(store_text, link, callback) {
           foodMeal.push(a);
         });
 
-        if(foodMeal.length > 0) {
-          foodMeals.push(foodMeal);
-        }
+        foodMeals.push(foodMeal);
       });
-  
+
       // breakfast lunch or dinner 
       $('td.restaurantTitle').each(function(k, meal) {
         let meal_text = $(meal).text();
-        if(!meals.includes(meal_text)) {
-          meals.push(meal_text);
+        if(meals[meal_text] != undefined) {
+          meals[meal_text] = true;
         }
       });
 
-      if(foodMeals.length !== meals.length) {
-        return;
-      } 
 
       // idea here is that the meals and food meals should have the same number of items,
       // so we can map them together sequentially 
-      for(let i = 0; i < meals.length; i++) {
-        foodMeals[i].forEach(function(meal) {
-          db.insert(store_text, {
-            'type': meals[i],
-            'food': meal,
-          });
+      
+      let food_count = 0;
+
+      for(let [meal, value] of Object.entries(meals)) {
+        console.log(meal + ' ' +  value);
+        if(value == false) continue;
+
+        foodMeals[food_count].forEach(function(food) {
+          if(food.indexOf('$') != -1) {
+            db.insert(store_text, {
+              'type': meal,
+              'food': food,
+            });
+          }
         });
+
+        food_count++;
       } 
     }
   });
