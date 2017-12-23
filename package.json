@@ -1,0 +1,42 @@
+{
+  "name": "dh_scraper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "db_helper.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cheerio": "^1.0.0-rc.2",
+    "create-react-app": "^1.4.3",
+    "express": "^4.16.2",
+    "mysql": "^2.15.0",
+    "node-schedule": "^1.2.5",
+    "nodemon": "^1.14.3",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "^1.0.17",
+    "react-uikit-button": "^2.0.2",
+    "readline": "^1.3.0",
+    "request": "^2.83.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "script": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CTrando/UCSD_Dining_Hall_Scraper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CTrando/UCSD_Dining_Hall_Scraper/issues"
+  },
+  "homepage": "http://localhost:3000",
+  "proxy": "http://localhost:4000"
+}
