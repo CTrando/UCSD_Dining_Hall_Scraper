@@ -97,6 +97,17 @@ function get_menu(dining_hall, meal, callback) {
   }
 }
 
+function get_dh_status(dh_name, callback) {
+  connection.query(`SELECT DISTINCT type FROM ${dh_name}`, 
+    (err, results, fields) => {
+      if(!err) {
+        callback(results);
+      } else {
+        console.log(err);
+      }
+    });
+}
+
 function end() {
   connection.end();
 }
@@ -109,6 +120,7 @@ module.exports = {
   start: start,
   create_tables: create_tables,
   drop_tables: drop_tables,
+  get_dh_status: get_dh_status,
   insert: insert
 }
 

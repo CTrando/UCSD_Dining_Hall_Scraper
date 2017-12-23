@@ -22,6 +22,13 @@ app.post('/data', (req, res) => {
   });
 });
 
+app.post('/status', (req, res) => {
+  let db_name = req.body['id'];
+  db.get_dh_status(db_name, (result) => {
+    res.send(JSON.stringify(result));
+  });
+})
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
