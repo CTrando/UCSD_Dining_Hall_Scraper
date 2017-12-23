@@ -59,10 +59,24 @@ class DiningHall extends Component{
     return (
       <div className="dh-flex-container">
         <div className= "dh-container">
-          <span className="center-text">{this.props.name}</span>
-          <span className="open-status"> {this.state.stat} </span>
+          <span className="dh-title">
+      <a href= '#'>
+      {this.props.name}
+      </a>
+      </span> 
+      <div className="dh-status"> 
+        <span>
+        {this.state.stat}
+        </span>
+        <span>
+          {this.state.stat}
+        </span>
+        <span>
+          {this.state.stat}
+        </span> 
+      </div>
         </div>
-      </div> 
+      </div>
     );
   }
 }
