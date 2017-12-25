@@ -3,8 +3,12 @@ import React, {Component} from 'react';
 class Menu extends Component {
   constructor(props) {
     super(props);
+    // doing this because not allowed to do it during dictionary 
+    // construction
+    let meals = {};
+    meals[props.cur_meal] = [];
     this.state = {
-      items: []
+      items: meals
     }
   }     
 
@@ -20,7 +24,6 @@ class Menu extends Component {
     // updated from parent
     let req = {
       id: this.props.id,
-      meal: this.props.cur_meal
     }
     fetch('/items', {
      method: 'POST',
@@ -32,11 +35,15 @@ class Menu extends Component {
     }).then((response) => {
       return response.json();
     }).then((data) => {
-      let new_items = [];
-      console.log(data);
+      let new_items = {};
       data.forEach((row) => {
-        new_items.push(row['food']);
+        if(new_items[row['type']] === undefined) {
+          new_items[row['type']] = [];
+        }
+        new_items[row['type']].push(row['food']);
       });
+      console.log(data);
+      console.log(new_items);
       this.setState({
         items: new_items
       });
@@ -46,10 +53,12 @@ class Menu extends Component {
   }
 
   render() {
+    console.log(this.props.cur_meal);
+    console.log(this.state.items);
     return (
       <div className='menu'>
       {
-        this.state.items.map((item, index) => {
+        this.state.items[this.props.cur_meal].map((item, index) => {
           return (<span className='menu-item' key={index}> {item} </span>) 
         })
       }

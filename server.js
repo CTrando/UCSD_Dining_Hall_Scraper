@@ -17,8 +17,7 @@ app.use(bodyParser.json());
 
 app.post('/items', (req, res) => {
   let db_name = req.body['id'];
-  let meal =  req.body['meal'];
-  db.get_menu(db_name, meal, (result) => {
+  db.get_menu(db_name, undefined, (result) => {
     res.send(JSON.stringify(result));
   });
 });
