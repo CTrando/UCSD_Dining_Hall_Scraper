@@ -2,7 +2,7 @@ import React from 'react';
 import DiningHall from './DiningHall.jsx';
 import Landing from './Landing.jsx';
 
-import './DiningHall.css';
+import './DiningHallDescriptor.css';
 
 import {
   BrowserRouter as Router,
@@ -14,7 +14,7 @@ const App = () => (
   <Router>
     <div className= "flex">
       <Route exact path="/" component={Landing}/>
-      <Route path="/ovt" render={(props) =>  <DiningHall dining_hall_name="ovt" /> } />
+      <Route path="/:dining_hall" component={DiningHall} />
     </div>
   </Router>
 );

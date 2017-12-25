@@ -1,55 +1,68 @@
-.dh-flex-container {
-  width: 32%;
-  height: 33%;
-}
-
-.dh-container {
-  position: relative;
-  font-size: 1.7rem;
+.dh-menu-container {
+  font-size: 1.7em;
   flex-direction: column;
+  flex-wrap: nowrap;
   width: 100%;
-  height: 100%;
-  margin: 5%;
-  border-radius: 10%;
-  box-shadow: 10px 5px 5px rgba(10, 10, 10, .2);
-  background-image:   linear-gradient(to top, rgba(230,220,215,0.5), rgba(10,10,20,0.5));
+  height: fit-content;
 }
 
-.flex {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
-
-div {
-  display: inherit;
-  flex-wrap: inherit;
-  height: 100%;
-}
-
-#root {
-  height: 90vh;
-  margin: 5vh;
-}
-
-.dh-title {
+.title {
+  font-size: 2em;
+  font-weight: 700;
   text-align: center;
-  margin: 10%;
-}
-
-.dh-status {
-  font-size: .5em;
-  flex-direction: row;
   justify-content: space-evenly;
-  text-align: center;
-  width: 100%;
-  max-height: 100%;
   height: auto;
-  position: absolute;
-  bottom: 10%;
+  margin-bottom: 2%;
 }
 
-a {
-  text-decoration: none;
+.button-group-container {
+  margin: 2%;
+  width: 100%;
+  height: 10%;
+  justify-content: space-evenly;
+  flex-direction: row;
+} 
+
+.button-container {
+  width: 32%;
+  height: 100%;
 }
 
+.button-container a {
+  width: 100%;
+  height: 100%;
+}
+
+.button {
+  text-align: center;
+  width: 100%;
+  height: auto;
+  padding: 3% 0 3% 0;
+  background-color: #fff;
+  box-shadow: 7px 5px 5px 2px rgba(10,10,20, .2);
+  border: none;
+  border-radius: 30px;
+  transition: .7s ease;
+}
+
+.button:hover {
+  box-shadow: 0px 5px 10px rgba(0,0,0,1);
+}
+
+.menu-container {
+  margin: 2%;
+  background-color: #fff;
+  border-radius: 30px;
+  border: none;
+  flex: 1 1 auto;
+}
+
+.menu {
+  margin: 2%;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+.menu-item {
+  height: auto;
+}

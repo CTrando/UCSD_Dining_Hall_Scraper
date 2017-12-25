@@ -15,9 +15,10 @@ var job = schedule.scheduleJob('*/1 * * * *', function() {
 app.use(bodyParser.json());
 
 
-app.post('/data', (req, res) => {
+app.post('/items', (req, res) => {
   let db_name = req.body['id'];
-  db.get_menu(db_name, undefined, (result) => {
+  let meal =  req.body['meal'];
+  db.get_menu(db_name, meal, (result) => {
     res.send(JSON.stringify(result));
   });
 });

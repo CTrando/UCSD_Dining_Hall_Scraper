@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import './DiningHall.css';
-import DiningHall from './DiningHall.jsx';
+import './DiningHallDescriptor.css';
+import DiningHall from './DiningHallDescriptor.jsx';
+
+import './Landing.css';
 
 
 class Landing extends Component {

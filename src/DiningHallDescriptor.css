@@ -1,0 +1,60 @@
+.dh-flex-container {
+  width: 32%;
+  height: 33%;
+}
+
+.nice-font {
+  font-family: Tahoma;
+  text-color: #333;
+  text-shadow: 0px 2px 3px #555;
+}
+
+.dh-container {
+  position: relative;
+  font-size: 1.7rem;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin: 5%;
+  border-radius: 10%;
+  box-shadow: 10px 5px 5px rgba(10, 10, 10, .2);
+  background-image:   linear-gradient(to bottom, rgba(230,220,215,0.5), rgba(10,10,20,0.5));
+}
+
+div {
+  display: inherit;
+  flex-wrap: inherit;
+  height: 100%;
+}
+
+#root {
+  height: 90vh;
+  margin: 5vh;
+}
+
+body {
+  background-color: rgba(20,40,30,.2);
+}
+
+.dh-title {
+  text-align: center;
+  margin: 10%;
+}
+
+.dh-status {
+  font-size: .5em;
+  flex-direction: row;
+  justify-content: space-evenly;
+  text-align: center;
+  width: 100%;
+  max-height: 100%;
+  height: auto;
+  position: absolute;
+  bottom: 10%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
