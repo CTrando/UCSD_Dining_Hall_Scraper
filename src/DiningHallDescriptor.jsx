@@ -85,9 +85,12 @@ class DiningHall extends Component{
       <div className="dh-flex-container">
         <div className= "dh-container nice-font">
           <span className="dh-title">
-            <a href= {this.props.id}>
-              {this.props.name}
-            </a>
+            {
+              this.state.meals.length > 0? 
+                <a href= {this.props.id}> {this.props.name} </a>
+              : 
+              <a href='#'> {this.props.name} </a>
+            }
           </span> 
           <div className="dh-status"> 
             { 

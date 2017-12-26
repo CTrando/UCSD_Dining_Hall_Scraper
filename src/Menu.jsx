@@ -53,8 +53,17 @@ class Menu extends Component {
   }
 
   render() {
-    console.log(this.props.cur_meal);
-    console.log(this.state.items);
+    if(this.state.items[this.props.cur_meal] === undefined 
+      || this.state.items[this.props.cur_meal].length  === 0) {
+      return (
+        <div className='menu'>
+          <span className='menu-item'>
+            Sorry, nothing on the menu today!
+          </span>
+        </div>
+      );
+    }
+
     return (
       <div className='menu'>
       {
