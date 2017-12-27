@@ -35,10 +35,14 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
+app.get("/dh/*", (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.listen(PORT, () => 
-  console.log('Test app running at port 4000'));
+  console.log(`Test app running at port ${PORT}`));
 
 
 

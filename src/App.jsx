@@ -14,7 +14,7 @@ const App = () => (
   <Router>
     <div className= "flex">
       <Route exact path="/" component={Landing}/>
-      <Route path="/:dining_hall" component={DiningHall} />
+      <Route path="/dh/:dining_hall" component={DiningHall} />
     </div>
   </Router>
 );

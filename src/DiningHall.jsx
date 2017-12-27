@@ -10,6 +10,7 @@ class DiningHall extends Component {
 
   constructor(props) {
     super(props);
+    console.log('hi');
     this.state = {
       id: this.props.match.params.dining_hall,
       name: DINING_HALLS[this.props.match.params.dining_hall.toLowerCase()],

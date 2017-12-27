@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './DiningHallDescriptor.css';
 import {insertion_sort} from './helper.jsx';
+import {Link} from 'react-router-dom';
 
 import breakfast from './images/breakfast.png';
 import lunch from './images/lunch.png';
@@ -80,15 +81,16 @@ class DiningHall extends Component{
   }
 
   render() {
+    let link = '/dh/' + this.props.id;
     return (
       <div className="dh-flex-container">
         <div className= "dh-container nice-font">
           <span className="dh-title">
             {
               this.state.meals.length > 0? 
-                <a href= {this.props.id}> {this.props.name} </a>
+                <Link to= {link}> {this.props.name} </Link>
               : 
-              <a href='#'> {this.props.name} </a>
+              <Link to='#'> {this.props.name} </Link>
             }
           </span> 
           <div className="dh-status"> 
