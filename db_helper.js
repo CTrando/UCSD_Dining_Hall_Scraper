@@ -5,21 +5,16 @@ const readline = require('readline');
 const { Client, Pool } = require('pg');
 
 const website = 'https://hdh.ucsd.edu/DiningMenus/default.aspx?i=05#';
-const conString = process.env.DATABASE_URL;
-
-/*
-const connection = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'hello',
-  password: 'ctrando',
-  port: 5432
-})
-*/
+//const conString = 'postgres://llncppnenmbbgn:965b78af87e997063878bab1307ef226d4ed145a53db9468e972fbee1fee204d@ec2-50-19-251-65.compute-1.amazonaws.com:5432/d4cr6a4tjf72ri';
 
 
 const connection = new Pool({
-  connectionString: conString,
+  user: 'llncppnenmbbgn',
+  host: 'ec2-50-19-251-65.compute-1.amazonaws.com',
+  database: 'd4cr6a4tjf72ri',
+  password: '965b78af87e997063878bab1307ef226d4ed145a53db9468e972fbee1fee204d',
+  port: 5432,
+  ssl: true
 });
 
 
