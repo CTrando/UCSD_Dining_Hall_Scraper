@@ -2,38 +2,53 @@ const request = require('request');
 const cheerio = require('cheerio');
 const mysql = require('mysql');
 const readline = require('readline');
+const { Client, Pool } = require('pg');
 
 const website = 'https://hdh.ucsd.edu/DiningMenus/default.aspx?i=05#';
-const warning_str ='This is a very dangerous move and it is highly recommended not to delete all the tables. Are you sure you wish to do this? (y/n) \n';
+const conString = process.env.DATABASE_URL;
 
-const input = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
+/*
+const connection = new Pool({
+  user: 'postgres',
+  host: 'localhost',
+  database: 'hello',
+  password: 'ctrando',
+  port: 5432
+})
+*/
+
+
+const connection = new Pool({
+  connectionString: conString,
 });
 
-input.on('close', function() {
-  console.log('The input has been closed now');
-});
 
-const connection = mysql.createConnection({
+/*
+  const connection = mysql.createConnection({
   host     : '127.0.0.1',
   user     : 'ctrando',
   password : 'ctrando',
   database : 'dininghalls',
   port: 3306
 });
+*/
 
 const DINING_HALLS = {
-  "OceanView": 'OVT',
-  "Canyon": 'CV',
-  "64": '64Degrees',
-  "Foodworx": 'Foodworx',
-  "Pines": 'Pines',
-  "Cafe": 'CafeV'
+  "OceanView": 'ovt',
+  "Canyon": 'cv',
+  "64": '64degrees',
+  "Foodworx": 'foodworx',
+  "Pines": 'pines',
+  "Cafe": 'cafev'
 }
 
 function make_table(table_name){
-  connection.query('CREATE TABLE IF NOT EXISTS ' + table_name + '(ID int NOT NULL PRIMARY KEY AUTO_INCREMENT, type TEXT, food TEXT)');
+  table_name = table_name.toLowerCase();
+  connection.query(`CREATE TABLE IF NOT EXISTS"${table_name}" (type TEXT, food TEXT)`, 
+  (err) => {
+//    console.log(err);
+    console.log(`${table_name} created successfully!`);
+  });
 }
 
 function start() {
@@ -50,16 +65,27 @@ function create_tables() {
 function drop_tables(callback) { 
   Object.values(DINING_HALLS).forEach(function(drop_hall) {
     console.log(`Dropping ${drop_hall}`);
-    connection.query("DROP TABLE IF EXISTS " + drop_hall);
+    connection.query(`DROP TABLE IF EXISTS "${drop_hall}"`, (err) => {
+     // console.log(err);
+    });
   });
   callback();
 }
 
-function reset() {
-  drop_tables(create_tables);
+function reset() { 
+  Object.values(DINING_HALLS).forEach(function(drop_hall) {
+    console.log(`Dropping ${drop_hall}`);
+
+    connection.query(`DROP TABLE IF EXISTS "${drop_hall}"`, 
+      (err) => {
+        make_table(drop_hall)
+      }
+    );
+  });
 }
 
 function insert(table_name, information) {
+  table_name = table_name.toLowerCase();
   // creating the column and value strings to be inserted
   column_str = [];
   value_str = [];
@@ -77,19 +103,20 @@ function insert(table_name, information) {
 }
 
 function get_menu(dining_hall, meal, callback) {
+  dining_hall = dining_hall.toLowerCase();
   if(meal ==  undefined) {
-    connection.query(`SELECT * FROM ${dining_hall}`, function(err, results, fields) {
+    connection.query(`SELECT * FROM "${dining_hall}"`, function(err, results) {
       if(!err) {
-        callback(results);
+        callback(results['rows']);
       } else {
         console.log(err);
       }
     });
   } else {
-  connection.query(`SELECT * FROM ${dining_hall} WHERE type='${meal}'`, 
-    function(err, results, fields) {
+  connection.query(`SELECT * FROM "${dining_hall}" WHERE type='${meal}'`, 
+    function(err, results) {
       if(!err) {
-        callback(results);
+        callback(results['rows']);
       } else {
         console.log(err);
       }
@@ -98,10 +125,11 @@ function get_menu(dining_hall, meal, callback) {
 }
 
 function get_dh_status(dh_name, callback) {
-  connection.query(`SELECT DISTINCT type FROM ${dh_name}`, 
-    (err, results, fields) => {
+  dh_name = dh_name.toLowerCase();
+  connection.query(`SELECT DISTINCT type FROM "${dh_name}"`, 
+    (err, results) => {
       if(!err) {
-        callback(results);
+        callback(results['rows']);
       } else {
         console.log(err);
       }

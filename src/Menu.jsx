@@ -37,10 +37,12 @@ class Menu extends Component {
     }).then((data) => {
       let new_items = {};
       data.forEach((row) => {
-        if(new_items[row['type']] === undefined) {
-          new_items[row['type']] = [];
+        // gotta have that lower casing eh
+        let meal = row['type'].toLowerCase();
+        if(new_items[meal] === undefined) {
+          new_items[meal] = [];
         }
-        new_items[row['type']].push(row['food']);
+        new_items[meal].push(row['food']);
       });
       console.log(data);
       console.log(new_items);

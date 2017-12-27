@@ -70,11 +70,10 @@ class DiningHall extends Component{
       // guarenteed to be unique by distinct query 
       let open_meals = [];
       response_data.forEach((entry) => {
-        let type = entry['type'];
+        let type = entry['type'].toLowerCase();
         open_meals.push(type);
       });
       s.setState({meals: insertion_sort(open_meals)});
-
     }).catch(function(error) {
       console.log('Something went wrong here');
     });
