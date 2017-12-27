@@ -7,6 +7,8 @@ const scrape = require('./scrape.js');
 const db = require('./db_helper.js');
 const schedule = require('node-schedule');
 
+const PORT = process.env.PORT || 4000;
+
 var job = schedule.scheduleJob('*/1 * * * *', function() {
  // scrape.update();
 });
@@ -35,7 +37,7 @@ app.get('/', (req, res) => {
 
 app.use(express.static(path.join(__dirname, 'build')));
 
-app.listen(4000, () => 
+app.listen(PORT, () => 
   console.log('Test app running at port 4000'));
 
 
