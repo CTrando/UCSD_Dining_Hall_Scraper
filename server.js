@@ -13,7 +13,6 @@ var job = schedule.scheduleJob('*/1 * * * *', function() {
  // scrape.update();
 });
 
-
 app.use(bodyParser.json());
 
 

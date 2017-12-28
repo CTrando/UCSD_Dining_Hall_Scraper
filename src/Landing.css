@@ -1,7 +1,9 @@
 .flex {
   display: flex;
+  display: -webkit-flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  -webkit-justify-content: space-between;
 }
 
 

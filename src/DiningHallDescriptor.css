@@ -42,9 +42,14 @@ body {
 }
 
 .dh-status {
-  font-size: .5em;
-  flex-direction: row;
-  justify-content: space-evenly;
+ font-size: .5em;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   text-align: center;
   width: 100%;
   max-height: 100%;
