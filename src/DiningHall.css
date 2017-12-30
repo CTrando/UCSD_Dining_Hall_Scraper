@@ -21,9 +21,13 @@
   margin-bottom: 2%;
 }
 
+.title span {
+  width: 100%;
+}
+
 .button-group-container {
   width: auto;
-  height: 10%;
+  height: auto;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
@@ -51,7 +55,7 @@ button {
   max-width: 95%;
 
   height: auto;
-  padding: 3% 0 3% 0;
+  padding: 5% 0;
   background-color: #fff;
   -webkit-box-shadow: 7px 5px 5px 2px rgba(10,10,20, .2);
           box-shadow: 7px 5px 5px 2px rgba(10,10,20, .2);
