@@ -7,9 +7,7 @@
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
   width: 100%;
-  height: -moz-max-content;
-  height: -webkit-max-content;
-  height: intrinsic;
+  height: auto;
 }
 
 .title {
@@ -24,7 +22,7 @@
 }
 
 .button-group-container {
-  width: 100%;
+  width: auto;
   height: 10%;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
@@ -48,7 +46,10 @@ button {
 
   font: inherit;
   text-align: center;
+
   width: 100%;
+  max-width: 95%;
+
   height: auto;
   padding: 3% 0 3% 0;
   background-color: #fff;
@@ -102,5 +103,6 @@ button:focus {
 }
 
 .menu-item {
+  text-align: left;
   height: auto;
 }

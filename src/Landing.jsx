@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
-import './DiningHallDescriptor.css';
+import './DiningHallDescriptor.css'; 
+import './Landing.css'; 
 import DiningHall from './DiningHallDescriptor.jsx';
-
-import './Landing.css';
-
 
 class Landing extends Component {
 
   render() {
     return (
-      <div className="dining-hall">
+      <div className='landing-container'>
         <DiningHall id="OVT" name="OceanView Terrace" />
         <DiningHall id= "CV" name="Canyon Vista" />
         <DiningHall id= "64Degrees" name="64 Degrees" />
