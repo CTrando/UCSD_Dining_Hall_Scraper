@@ -3,7 +3,7 @@ const cheerio = require('cheerio');
 const { Client, Pool } = require('pg');
 
 // connection to our database 
-/*
+
 const connection = new Pool({
   user: 'llncppnenmbbgn',
   host: 'ec2-50-19-251-65.compute-1.amazonaws.com',
@@ -12,9 +12,9 @@ const connection = new Pool({
   port: 5432,
   ssl: true
 });
-*/
 
 
+/*
 const connection = new Pool({
   user: 'postgres',
   host: 'localhost',
@@ -22,6 +22,7 @@ const connection = new Pool({
   password: 'ctrando',
   port: 5432
 });
+*/
 
 
 // dictionary for mapping the long names to their code names
