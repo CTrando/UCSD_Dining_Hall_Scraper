@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 4000;
 
 // cron job for scraping every minute
 var job = schedule.scheduleJob('*/1 * * * *', function() {
-  scrape.update();
+  //scrape.update();
 });
 
 // telling express how to interpret POST requests
