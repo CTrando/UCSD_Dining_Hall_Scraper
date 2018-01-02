@@ -5,6 +5,10 @@ import DiningHall from './DiningHallDescriptor.jsx';
 
 class Landing extends Component {
 
+  componentDidMount() {
+    document.title = "Dining Halls";
+  }
+
   render() {
     return (
       <div className='landing-container'>

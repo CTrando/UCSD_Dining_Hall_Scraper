@@ -10,13 +10,16 @@ class DiningHall extends Component {
 
   constructor(props) {
     super(props);
-    console.log('hi');
     this.state = {
       id: this.props.match.params.dining_hall,
       name: DINING_HALLS[this.props.match.params.dining_hall.toLowerCase()],
       cur_meal: 'breakfast'
     }
   } 
+
+  componentDidMount() {
+    document.title = this.state.name;
+  }
 
   handleClick(e) {
     let new_cur_meal = e.target.innerText.toLowerCase();
@@ -42,7 +45,7 @@ class DiningHall extends Component {
         </div>
         <div className='menu-container'>
             <Menu id={this.state.id} cur_meal={this.state.cur_meal}></Menu>
-        </div>
+          </div>
       </div>
     );
   }

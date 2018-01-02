@@ -16,6 +16,7 @@ const connection = new Pool({
   ssl: true
 });
 
+
 /*
 const connection = new Pool({
   user: 'postgres',
@@ -25,6 +26,7 @@ const connection = new Pool({
   port: 5432
 });
 */
+
 
 const DINING_HALLS = {
   "OceanView": 'ovt',
@@ -39,7 +41,6 @@ function make_table(table_name){
   table_name = table_name.toLowerCase();
   connection.query(`CREATE TABLE IF NOT EXISTS"${table_name}" (type TEXT, food TEXT)`, 
   (err) => {
-//    console.log(err);
     console.log(`${table_name} created successfully!`);
   });
 }
@@ -55,11 +56,11 @@ function create_tables() {
   });
 }
 
-function drop_tables(callback) { 
+function clear_tables(callback) { 
   Object.values(DINING_HALLS).forEach(function(drop_hall) {
     console.log(`Dropping ${drop_hall}`);
-    connection.query(`DROP TABLE IF EXISTS "${drop_hall}"`, (err) => {
-     // console.log(err);
+    connection.query(`DELETE FROM "${drop_hall}" IF EXISTS`, (err) => {
+      console.log(err);
     });
   });
   callback();
@@ -67,7 +68,7 @@ function drop_tables(callback) {
 
 function reset() { 
   Object.values(DINING_HALLS).forEach(function(drop_hall) {
-    console.log(`Dropping ${drop_hall}`);
+    console.log(`Clearing ${drop_hall}`);
 
     connection.query(`DROP TABLE IF EXISTS "${drop_hall}"`, 
       (err) => {
@@ -140,7 +141,7 @@ module.exports = {
   end: end,
   start: start,
   create_tables: create_tables,
-  drop_tables: drop_tables,
+  clear_tables: clear_tables,
   get_dh_status: get_dh_status,
   insert: insert
 }

@@ -18,6 +18,10 @@ class Menu extends Component {
     }, 1000);
   }
 
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
+  }
+
   updateMenu() {
     // using props id to allow change in variables
     // using state would make the variable unable to be 
@@ -44,8 +48,10 @@ class Menu extends Component {
         }
         new_items[meal].push(row['food']);
       });
-      console.log(data);
-      console.log(new_items);
+
+      // Use for debug purposes
+      //console.log(data);
+      //console.log(new_items);
       this.setState({
         items: new_items
       });
