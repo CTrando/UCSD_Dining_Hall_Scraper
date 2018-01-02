@@ -1,5 +1,8 @@
+// from npm modules
 const request = require('request');
 const cheerio = require('cheerio');
+
+// from my code
 const db = require('./db_helper.js');
 
 // hardcoding the websites to reduce time it takes to request html
@@ -27,13 +30,13 @@ const root_website = 'https://hdh.ucsd.edu/DiningMenus/';
 function storeDHMenus(store_name, link, callback) { 
   // make the HTML request to the website
   request(link, function (err, response, html) {
-    // making the two lists for the meals and the food 
-    let foods = []
+    // making the two lists for the meals and the food so can pair up each meal with each food menu 
+    let foods = [];
     let meals = [
       'Breakfast',
       'Lunch',
       'Dinner'
-    ]
+    ];
 
     if (!err && response.statusCode == 200) {
       // loading html into cheerio to parse 
@@ -45,12 +48,13 @@ function storeDHMenus(store_name, link, callback) {
       // the actual content
       
       $('td.menuList').each(function(i, menu) {
-        // food is the specific menu for this dining hall at a certain meal  
+        // food is the specific menu for this dining hall at a certain meal        
         let food = []
         
         // menu is the html for the menu, parsing through it to look for food
         $(menu).children('ul').children('li').each(function(j, item) {
-          var food_text = $(item).text();
+          // adding food text to food list 
+          let food_text = $(item).text();
           food.push(food_text);
         });
         
@@ -87,7 +91,8 @@ function storeDHMenus(store_name, link, callback) {
 function update() {
   // reset the table state
   db.reset();
-
+  
+  // run the update command on each dining hall 
   Object.entries(websites).forEach(function([name, website_link]) {
     // making the callback function just print the name of the dining hall and its link
     storeDHMenus(name, website_link, function() {
@@ -96,6 +101,7 @@ function update() {
   });
 }
 
+// only visible method will be the update method
 module.exports = {
   update: update,
 }

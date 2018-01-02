@@ -142,7 +142,7 @@ class DiningHall extends Component{
             <div className="dh-status"> 
               { 
                 this.state.meals.map((name, index) => {
-                  return <img key={index} src= {images[name]} />
+                  return <img key={index} alt={name} src= {images[name]} />
                 })
               }
             </div>
