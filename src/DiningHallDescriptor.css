@@ -25,11 +25,9 @@
 div {
   display: inherit;
   flex-wrap: inherit;
-  height: 100%;
 }
 
 #root {
-  height: 90vh;
   margin: 5vh;
 }
 

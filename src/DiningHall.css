@@ -18,7 +18,7 @@
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   height: auto;
-  margin-bottom: 2%;
+  min-height: max-content;
 }
 
 .title span {
@@ -27,7 +27,9 @@
 
 .button-group-container {
   width: auto;
-  height: 10%;
+  height: auto;
+  min-height: max-content;
+  margin: 1% 0;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
@@ -40,7 +42,6 @@
 
 .button-container {
   width: 32%;
-  height: 100%;
 }
 
 button {
@@ -83,9 +84,7 @@ button:focus {
 
 .menu-container {
   margin-top: 3%;
-  height: -moz-max-content;
-  height: -webkit-max-content;
-  height: intrinsic;
+  height: 100%;
   background-color: #fff;
   border-radius: 30px;
   border: none;

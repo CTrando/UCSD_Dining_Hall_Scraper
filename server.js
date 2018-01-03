@@ -13,8 +13,8 @@ const db = require('./db_helper.js');
 const PORT = process.env.PORT || 4000;
 
 // cron job for scraping every minute
-var job = schedule.scheduleJob('*/1 * * * *', function() {
-  //scrape.update();
+var job = schedule.scheduleJob('59 * * * *', function() {
+  scrape.update();
 });
 
 // telling express how to interpret POST requests
